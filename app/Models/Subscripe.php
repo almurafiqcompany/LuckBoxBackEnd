@@ -9,9 +9,12 @@ class Subscripe extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'promo_id',
+        'code',
+        'counter',
         'user_id',
     ];
-    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
 }

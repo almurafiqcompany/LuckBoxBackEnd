@@ -11,7 +11,6 @@ class Promocode extends Model
 
     protected $fillable = [
         'code',
-        'user_id',
     ];
 
 }

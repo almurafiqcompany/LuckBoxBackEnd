@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PromocodeController;
 use App\Http\Controllers\SubscripeController;
+use App\Http\Controllers\AttemptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::put('/users/{user}',[UserController::class,'update']);
 Route::post('login', [UserController::class,'login']);
 Route::post('register', [UserController::class,'register']);
 Route::post('/logout',[UserController::class,'logout'])->middleware('auth:api');
+Route::put('/coins/{user}',[UserController::class,'updatecoins']);
 
 
 
@@ -44,4 +46,12 @@ Route::get('/subscripes',[SubscripeController::class,'index']);
 Route::get('/subscripes/{subscripe}',[SubscripeController::class,'show']);
 Route::delete('/subscripes/{subscripe}',[SubscripeController::class,'destroy']);
 Route::put('/subscripes/{subscripe}',[SubscripeController::class,'update']);
+Route::get('/search/{subscripe}',[SubscripeController::class,'search']);
 
+
+/*****************Api Attempts */
+Route::post('/attempts', [AttemptController::class,'store']);
+Route::get('/attempts',[AttemptController::class,'index']);
+Route::get('/attempts/{attempt}',[AttemptController::class,'show']);
+Route::delete('/attempts/{attempt}',[AttemptController::class,'destroy']);
+Route::put('/attempts/{attempt}',[AttemptController::class,'update']);

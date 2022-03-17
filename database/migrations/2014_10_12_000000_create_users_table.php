@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('phone');
             $table->string('governate');
             $table->string('password');
-            $table->tinyInteger('permission')->default(0);
             $table->bigInteger('coins')->default(0);
             $table->rememberToken();
             $table->timestamps();

@@ -13,7 +13,6 @@ class PromocodeController extends Controller
         $Promocode = Promocode::create([
             // data from form
             'code' => $data['code'],
-            'user_id' => $data['user_id'],
         ]);
         return $Promocode;
     }
@@ -45,7 +44,6 @@ public function index()
         $onePromocode = Promocode::findOrFail($PromocodeId);
         $onePromocode->update([
             'code' => (isset($data['code'])) ? $data['code'] : $onePromocode->code,
-            'user_id' => isset($data['user_id']) ? $data['user_id'] : $onePromocode->user_id,
         ]);
         return $onePromocode;
     }

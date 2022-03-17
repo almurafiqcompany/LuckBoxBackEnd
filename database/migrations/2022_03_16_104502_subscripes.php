@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->references('id')->on('users')->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->foreignId('promo_id')->constrained()->references('id')->on('promocodes')->onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->string('code');
+            $table->bigInteger('counter');
             $table->timestamps();
         }); 
     }

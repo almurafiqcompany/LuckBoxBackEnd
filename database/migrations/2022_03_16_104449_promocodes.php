@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('promocodes', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->foreignId('user_id')->constrained()->references('id')->on('users')->onDelete('cascade')
-            ->onUpdate('cascade');
             $table->timestamps();
         }); 
     }

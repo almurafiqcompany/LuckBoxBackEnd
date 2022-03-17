@@ -15,7 +15,6 @@ class UserController extends Controller
             'email' => 'email|required',
             'password' => 'required'
         ]);
-
         if (!auth()->attempt($data)) {
             return response(['error_message' => 'Incorrect Details. 
             Please try again']);
@@ -88,4 +87,15 @@ class UserController extends Controller
         ]);
         return $oneUser;
     }
+
+    public function updatecoins($UserId, Request $request)
+    {
+        $data = $request->all();
+        $oneUser = User::findOrFail($UserId);
+        $oneUser->update([
+            'coins' => (isset($data['coins'])) ? $data['coins'] : $oneUser->coins,
+        ]);
+        return $oneUser;
+    }
+
 }

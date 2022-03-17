@@ -13,14 +13,16 @@ class SubscripeController extends Controller
         $Subscripe = Subscripe::create([
             // data from form
             'user_id' => $data['user_id'],
-            'promo_id' => $data['promo_id'],
+            'code' => $data['code'],
+            'counter' => $data['counter'],
+
         ]);
         return $Subscripe;
     }
 
     public function index()
     {
-        $allSubscripes = Subscripe::get();
+        $allSubscripes = Subscripe::with('user')->get();
         return $allSubscripes;
     }
 
@@ -44,14 +46,18 @@ class SubscripeController extends Controller
         $data = $request->all();
         $oneSubscripe = Subscripe::findOrFail($SubscripeId);
         $oneSubscripe->update([
-            'user_id' => (isset($data['user_id'])) ? $data['user_id'] : $oneSubscripe->user_id,
-            'promo_id' => isset($data['promo_id']) ? $data['promo_id'] : $oneSubscripe->promo_id,
+            'counter' => isset($data['counter']) ? $data['counter'] : $oneSubscripe->counter,
         ]);
         return $oneSubscripe;
     }
 
 
-
+    function search($name, Request $request)
+    {
+        $data = $request->all();
+        $resultCode = Subscripe::with('user')->where('code', 'LIKE','%'.$name.'%')->where('counter','10')->get();
+        return Response()->json(['resultCode'=>$resultCode]);
+    }
 
 
 
